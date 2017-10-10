@@ -1,6 +1,6 @@
 # Original Prusa i3 MK2 Firmware
 
-![Build Status](https://travis-ci.org/PrusaMK2Users/Prusa-Firmware.svg?branch=MK2 "Build Status")
+![Build Status](https://travis-ci.org/PrusaMK2Users/Prusa-Firmware.svg?branch=MK2-DEPLOY "Build Status")
 
 ## General instructions
 
