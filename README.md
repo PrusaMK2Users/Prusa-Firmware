@@ -1,4 +1,4 @@
-# Original Prusa i3 MK2 Firmware
+# Haribo 3030 Edition Firmware
 
 ## General instructions
 
