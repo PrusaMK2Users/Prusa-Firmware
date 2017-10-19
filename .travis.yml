@@ -17,6 +17,7 @@ script:
 - VARIANTS=$(ls Firmware/variants/)
 - touch Firmware/Configuration_prusa.h
 - for VARIANT in $VARIANTS;
+    echo "Building ${VARIANT}" ;
     do rm Firmware/Configuration_prusa.h ;
     cp Firmware/variants/${VARIANT} Firmware/Configuration_prusa.h ;
     arduino-1.6.13/arduino --pref build.path=. --verify --verbose-build --board marlin:avr:rambo $PWD/Firmware/Firmware.ino ;
