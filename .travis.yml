@@ -19,7 +19,7 @@ script:
     rm -fv Firmware/Configuration_prusa.h ;
     cp -v Firmware/variants/${VARIANT} Firmware/Configuration_prusa.h ;
     arduino-1.6.13/arduino --pref build.path=. --verify --board marlin:avr:rambo $PWD/Firmware/Firmware.ino ;
-    mv Firmware.ino.hex release/"${VARIANT}"ex ;
+    mv Firmware.ino.hex release/"${VARIANT::${#VARIANT}-2}-${TRAVIS_TAG}".hex ;
   done;
 - for VARIANT in $VARIANTS; do
     echo $VARIANT;
@@ -27,7 +27,7 @@ script:
     cp -v Firmware/variants/${VARIANT} Firmware/Configuration_prusa.h ;
     Scripts/haribo_config.sh ;
     arduino-1.6.13/arduino --pref build.path=. --verify --board marlin:avr:rambo $PWD/Firmware/Firmware.ino ;
-    mv Firmware.ino.hex release/Haribo_3030_Edition-"${VARIANT}"ex ;
+    mv Firmware.ino.hex release/Haribo_3030_Edition-"${VARIANT::${#VARIANT}-2}-${TRAVIS_TAG}".hex ;
   done;
 - for VARIANT in $VARIANTS; do
     echo $VARIANT;
@@ -36,7 +36,7 @@ script:
     Scripts/haribo_config.sh ;
     Scripts/reprap_lcd_config.sh ;
     arduino-1.6.13/arduino --pref build.path=. --verify --board marlin:avr:rambo $PWD/Firmware/Firmware.ino ;
-    mv Firmware.ino.hex release/Haribo_3030_Edition-RepRapLcd-"${VARIANT}"ex ;
+    mv Firmware.ino.hex release/Haribo_3030_Edition-RepRapLcd-"${VARIANT::${#VARIANT}-2}-${TRAVIS_TAG}".hex ;
   done
 
 deploy:
