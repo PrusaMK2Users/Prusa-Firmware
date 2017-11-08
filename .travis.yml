@@ -13,7 +13,7 @@ before_install:
 - find arduino-1.6.13/ -name platform.local.txt -delete
 script:
 - mkdir release
-- VARIANTS=$(ls Firmware/variants/)
+- VARIANTS=$(ls Firmware/variants/ | grep -v MK1)
 - for VARIANT in $VARIANTS; do
     echo $VARIANT;
     rm -fv Firmware/Configuration_prusa.h ;
