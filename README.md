@@ -1,5 +1,7 @@
 # Original Prusa i3 MK2 Firmware
 
+<a href=https://travis-ci.org/PrusaMK2Users/Prusa-Firmware>![Build Status](https://travis-ci.org/PrusaMK2Users/Prusa-Firmware.svg?branch=MK2-DEPLOY "Build Status")</a>
+
 ## General instructions
 
 Pre-compiled hex output on PRUSA RESEARCH site: http://prusa3d.com/downloads/firmware/
