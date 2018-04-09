@@ -13,31 +13,16 @@ before_install:
 - find arduino-1.6.13/ -name platform.local.txt -delete
 script:
 - mkdir release
-- VARIANTS=$(ls Firmware/variants/ | grep -v MK1 | grep RAMBo13a)
-- for VARIANT in $VARIANTS; do
-    echo $VARIANT;
-    rm -fv Firmware/Configuration_prusa.h ;
-    cp -v Firmware/variants/${VARIANT} Firmware/Configuration_prusa.h ;
-    arduino-1.6.13/arduino --pref build.path=. --verify --board marlin:avr:rambo $PWD/Firmware/Firmware.ino ;
-    mv Firmware.ino.hex release/"${VARIANT::${#VARIANT}-2}-${TRAVIS_TAG}".hex ;
-  done;
-- for VARIANT in $VARIANTS; do
-    echo $VARIANT;
-    rm -fv Firmware/Configuration_prusa.h ;
-    cp -v Firmware/variants/${VARIANT} Firmware/Configuration_prusa.h ;
-    Scripts/haribo_config.sh ;
-    arduino-1.6.13/arduino --pref build.path=. --verify --board marlin:avr:rambo $PWD/Firmware/Firmware.ino ;
-    mv Firmware.ino.hex release/Haribo_3030_Edition-"${VARIANT::${#VARIANT}-2}-${TRAVIS_TAG}".hex ;
-  done;
-- for VARIANT in $VARIANTS; do
-    echo $VARIANT;
-    rm -fv Firmware/Configuration_prusa.h ;
-    cp -v Firmware/variants/${VARIANT} Firmware/Configuration_prusa.h ;
-    Scripts/haribo_config.sh ;
-    Scripts/reprap_lcd_config.sh ;
-    arduino-1.6.13/arduino --pref build.path=. --verify --board marlin:avr:rambo $PWD/Firmware/Firmware.ino ;
-    mv Firmware.ino.hex release/Haribo_3030_Edition-RepRapLcd-"${VARIANT::${#VARIANT}-2}-${TRAVIS_TAG}".hex ;
-  done
+- arduino-1.6.13/arduino --pref build.path=. --verify --board marlin:avr:rambo $PWD/Firmware/Firmware.ino ;
+  mv Firmware.ino.hex release/"${VARIANT::${#VARIANT}-2}-${TRAVIS_TAG}".hex ;
+
+- Scripts/haribo_config.sh ;
+  arduino-1.6.13/arduino --pref build.path=. --verify --board marlin:avr:rambo $PWD/Firmware/Firmware.ino ;
+    mv Firmware.ino.hex release/Haribo_3030_Edition-MK25-"${TRAVIS_TAG}".hex ;
+
+- Scripts/reprap_lcd_config.sh ;
+  arduino-1.6.13/arduino --pref build.path=. --verify --board marlin:avr:rambo $PWD/Firmware/Firmware.ino ;
+  mv Firmware.ino.hex release/Haribo_3030_Edition-RepRapLcd-MK25-"${TRAVIS_TAG}".hex ;
 
 deploy:
   provider: releases
